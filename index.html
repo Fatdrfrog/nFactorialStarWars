@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>A long time ago in a galaxy far, far away...</section>
+			<section>
+				<section>Was a course or "curse" of never-ending-learning...</section>
+				<section>Welcome to the seven'th lecture of <b style="color:red">NFactorial</b> - React course where you
+					will learn(I hope) three
+					main concepts - <b style="color:red">states/props and components</b>. Shall we begin?</section>
+				<section>`App.js` => we're gonna view it, chop it, upgrade it properly today.<b style="color:red"> HODL YOUR BREATH</b> <br> Next Episode =====></section>
+			</section>
+			<section>
+				<section>`.map` method => is a <b style="color:red">killing machine</b> in refactoring UI. Lets see, how we can reuse our dublicated code...</section>
+				<section data-markdown>
+					<textarea data-template>
+						 Mapping links
+						  ```js [1-14|2,13|4,6,8,11|4]
+						  <div className="links-layout">
+							{swLinks.map((link) => (
+							<a
+								key={link.name}
+								className="link"
+								href={link.url}
+								target="_blank"
+								alt={link.name}
+								rel="noreferrer"
+								>
+								{link.component}
+							</a>
+							))}
+						</div>
+						  ```
+						</textarea>
+				</section>
+				<section>Same thing with characters. <b style="color:red">LETS BREAK'EM ALL</b></section>
+				<section data-markdown>
+					<textarea data-template>
+						 Mapping characters
+						```js [1-19|2|4,5,6,11,12]
+						  {swCharacters.map((character) => (
+							<div key={character.name} className="item-list-layout">
+								<div>
+									<p>name: {character.name}</p>
+									<p>gender: {character.gender}</p>
+									<p>birthday: {character.birth_year}</p>
+								</div>
+								<div className="item-image-layout">
+									<img
+									className="item-image"
+									src={character.url}
+									alt={character.name}
+									/>
+								</div>
+								<div className="item-button-layout">
+									<button className="delete-button">Delete</button>
+								</div>
+							</div>
+							))}
+						  ```
+						</textarea>
+				</section>
+				<section>We reused duplicated code and now it looks smooth and nice. Never forget about <b style="color:red">keys</b> while using `.map`.<br>Next Episode ====></section>
+			</section>
+
+			<section>
+			<section>Components => divide and conquer</section>
+			<section>Lets break againg our code to smaller chunks. In our StarWars project there are (at least) two logically separated sections: <b style="color:rgb(76, 76, 232)">header</b> and <b style="color:rgb(76, 76, 232)">content-section</b></section>
+			<section>React allows us to break them into two separate functions. We can specify them within <b style="color:rgb(76, 76, 232)">App.js</b>, or even better, in two separate files...</section>
+			<section>First create <b style="color:rgb(76, 76, 232)">components</b> folder. Then specify two smaller folders <b style="color:rgb(76, 76, 232)">header,content</b>. Last step, create <b style="color:rgb(76, 76, 232)">index.js</b> file within folder.</section>
+			<section>In <b style="color:rgb(76, 76, 232)">index.js</b> files just cut needed parts from <b style="color:rgb(76, 76, 232)">App.js</b> and put them inside. Don't forget to create function with proper name first. Ex: <b style="color:rgb(76, 76, 232)">Header, Content</b>...</section>
+			<section data-markdown>
+				<textarea data-template>
+					 Creating Component <b style="color:rgb(76, 76, 232)">Header</b>
+					  ```js [1-4|3]
+					  export const Header = () => {
+						return (
+							/*  Your content from App.js goes here  */
+						)
+					  }
+					  ```
+					</textarea>
+			</section>
+			<section data-markdown>
+				<textarea data-template>
+					 Creating Component <b style="color:rgb(76, 76, 232)">Header</b>
+					  ```js [3-23]
+					  export const Header = () => {
+						return (
+							<header>
+								<div className="links-layout">
+								  {swLinks.map((link) => (
+									<a
+									  key={link.name}
+									  className="link"
+									  href={link.url}
+									  target="_blank"
+									  alt={link.name}
+									  rel="noreferrer"
+									>
+									  {link.component}
+									</a>
+								  ))}
+								</div>
+								<StarWarsLogoSVG />
+								<div className="search-layout">
+								  <IconSearchSVG className="search-icon" />
+								  <input placeholder="Search Star Wars" type="text" />
+								</div>
+							  </header>
+						)
+					  }
+					  ```
+					</textarea>
+			</section>
+			<section>Don't forget to move all needed imports and variables as well %) <b style="color:rgb(76, 76, 232)">VSCode linter</b> (or other IDE linters) should help you with right decisions</section>
+			<section>Recreate same steps with <b style="color:rgb(76, 76, 232)">content.</b>...<br>next Episode ====></section>
+		</section>
+
+	<section>
+		<section>Events.  <b style="color:rgb(76, 76, 232)">onClick</b> && <b style="color:red">onChange</b></section>
+		<section data-markdown>
+			<textarea data-template>
+				 onClick event
+				  ```js [1-4|3,8]
+				  export const Header = () => {
+					const handleChooseFan = () => {
+						console.log("Im your fan");
+					  };
+
+					return (
+						...
+						<button className="favorite-button" onClick={handleChooseFan}>
+						...
+					)
+				  }
+				  ```
+				</textarea>
+		</section>
+		<section data-markdown>
+			<textarea data-template>
+				 passing parameters to function
+				  ```js [1,7]
+					const handleChooseFan = (parameter) => {
+						console.log(parameter);
+					  };
+
+					return (
+						...
+						<button className="favorite-button" onClick={()=>handleChooseFan("Hello there")}>
+						...
+					)
+				  ```
+				</textarea>
+		</section>
+		<section data-markdown>
+			<textarea data-template>
+				 passing mapped character as a parameter
+				  ```js [7]
+					const handleChooseFan = (parameter) => {
+						console.log(parameter);
+					  };
+
+					return (
+						...
+						 onClick={()=>handleChooseFan(character)}>
+						...
+					)
+				  ```
+				</textarea>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+				 destructure name from character
+				  ```js [1]
+					const handleChooseFan = ({name}) => {
+						console.log(name);
+					  };
+				  ```
+				</textarea>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+				 onChange event
+				  ```js 
+				  const handleChangePath = (event) => {
+					console.log(event.target.value); // event is passing by default if you are not using forced parameter passing method
+				  };
+				  ```
+				  Next Episode ====>
+				</textarea>
+		</section>
+	</section>
+
+	<section>
+		<section> Behold! The <b style="color:rgb(76, 76, 232)">States</b>. Wee need them to control stuff</section>
+		<section>
+			<ol>
+				<li>import them from 'react'</li>
+				<li>create new variable and <b style="color:rgb(76, 76, 232)">destructure</b> stuff</li>
+				<li>set default value inside <b style="color:rgb(76, 76, 232)">useState</b> hook(function)</li>
+				<li>example: const [myNewState, useMyNewState] = useState()</li>
+			</ol>
+		</section>
+		<section data-markdown>
+				<textarea data-template>
+				 state example
+				  ```js 
+				  import React,{useState} from "react";
+				  ...
+				  const [tab,setTab] = useState("Characters")
+				  ```
+				</textarea>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+			 Let's use'em!
+			  ```js [4]
+			<select
+			placeholder="Choose your path"
+			className="select-item"
+			value={tab}
+			onChange={handleChangeTab}
+			>
+			  ```
+			</textarea>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+			 Under characters create similar .map of planets
+			  ```js
+			  {swPlanets.map((planet) => (
+				<div key={planet.name} className="item-list-layout">
+				  <div>
+					<p>name: {planet.name}</p>
+					<p>rotation Period: {planet.rotation_period}</p>
+					<p>terrain: {planet.terrain}</p>
+				  </div>
+				  <div className="item-image-layout">
+					<img className="item-image" src={planet.url} alt={planet.name} />
+				  </div>
+				</div>
+			  ))}
+			  ```
+			</textarea>
+		</section>
+		<section data-markdown>
+			<textarea data-template>
+			 And show them by condition = characters, planets or starships
+			  ```js [2,7,9]
+				const handleChangeTab = (e) => {
+					setTab(e.target.value);
+				};
+				...
+				return( 
+				...
+				{tab === "Characters" && swCharacters.map((character) => (
+				...
+				{tab === "Planets" && swPlanets.map((planet) => (
+			  ```
+			</textarea>
+		</section>
+		<section>How do you do fellow studs?
+			<br/>
+		  Last Episode ====>
+		</section>
+	</section>
+
+	<section>
+
+		<section> <b style="color:red">Props.</b> Same as parameters but better(or not). </section>
+
+		<section data-markdown>
+			<textarea data-template>
+			 As an article said you can think of them as function parameters, but for components.
+			 <br/>
+			 Let's try to use "I am your fan!" button:
+			 ```js [1,4,7]
+			 const [fan, setFan] = useState("");
+
+			 const handleChooseFan = ({ name }) => {
+			   setFan(name);
+			 };
+			 ...
+			 <p style={{ color: "white" }}>I am fan of: {fan}</p>
+			 ```
+			 But, what if I want to show my favorite char in the <b style="color:red">Header</b>, under the `Search` tab?
+			</textarea>
+		</section>
+
+		<section>As you can see, now our states are encapsulated within <b style="color:red">Content</b> component, and we can not drop them to our <b style="color:red">Header</b>. Big sad %{</section>
+		<section data-markdown>
+			<textarea data-template>
+				Actually we can. We just have to cut our state and put it in the parent component => which is <b style="color:red">App.js</b><br/>
+			And then, just send this state as a props(parameter) to needed Component:
+				in App.js:
+				```js
+				import {useState} from "react";
+				...
+				const [fan, setFan] = useState("");
+
+				const handleChooseFan = ({ name }) => {
+					setFan(name);
+				  };
+				```
+			   </textarea>
+		</section>
+		<section data-markdown>
+			<textarea data-template>
+				Then pass state <b style="color:rgb(76, 76, 232)">fan</b> to our <b style="color:red">Header</b><br/>
+				and function <b style="color:rgb(76, 76, 232)">handleChooseFan</b> to our <b style="color:red">Content</b>
+				```js
+				<Header fan={fan} />
+				<hr />
+				<Content handleChooseFan={handleChooseFan} />
+				```
+				Don't forget to delete them from <b style="color:red">Content</b>!
+			   </textarea>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+				Last step is to "accept" them as props in <b style="color:red">Header</b> and <b style="color:red">Content</b>:
+				```js [2,5,7-9]
+				//inside Content component
+				export const Content = ({ handleChooseFan }) => {
+				
+				//inside Header component
+				export const Header = ({ fan }) => {
+				...
+				<div style={{ color: "white", paddingTop: "1rem" }}>
+					I am fan of: {fan}
+				  </div>
+				```
+			   </textarea>
+		</section>
+		<section>May the force be with you. =====> Hometask</section>
+	</section>
+
+	<section>
+		Take this project from my git
+	</section>
+
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
