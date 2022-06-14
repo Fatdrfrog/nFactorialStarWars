@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>reveal.js</title>
+	<title>props and components</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
@@ -18,360 +18,325 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section>test</section>
+			<section>A long time ago in a galaxy far, far away...</section>
+			<section data-background-image="./assets/first_slide.svg" ></section>
+			
 			<section>
-				<section>Was a course or "curse" of never-ending-learning...</section>
-				<section>Welcome to the seven'th lecture of <b style="color:red">NFactorial</b> - React course where you
-					will learn(I hope) three
-					main concepts - <b style="color:red">states/props and components</b>. Shall we begin?</section>
-				<section>`App.js` => we're gonna view it, chop it, upgrade it properly today.<b style="color:red"> HODL YOUR BREATH</b> <br> Next Episode =====></section>
-			</section>
-			<section>
-				<section>`.map` method => is a <b style="color:red">killing machine</b> in refactoring UI. Lets see, how we can reuse our dublicated code...</section>
-				<section data-markdown>
-					<textarea data-template>
-						 Mapping links
-						  ```js [1-14|2,13|4,6,8,11|4]
-						  <div className="links-layout">
-							{swLinks.map((link) => (
-							<a
-								key={link.name}
-								className="link"
-								href={link.url}
-								target="_blank"
-								alt={link.name}
-								rel="noreferrer"
-								>
-								{link.component}
-							</a>
-							))}
-						</div>
-						  ```
-						</textarea>
-				</section>
-				<section>Same thing with characters. <b style="color:red">LETS BREAK'EM ALL</b></section>
-				<section data-markdown>
-					<textarea data-template>
-						 Mapping characters
-						```js [1-19|2|4,5,6,11,12]
-						  {swCharacters.map((character) => (
-							<div key={character.name} className="item-list-layout">
-								<div>
-									<p>name: {character.name}</p>
-									<p>gender: {character.gender}</p>
-									<p>birthday: {character.birth_year}</p>
-								</div>
-								<div className="item-image-layout">
-									<img
-									className="item-image"
-									src={character.url}
-									alt={character.name}
-									/>
-								</div>
-								<div className="item-button-layout">
-									<button className="delete-button">Delete</button>
-								</div>
-							</div>
-							))}
-						  ```
-						</textarea>
-				</section>
-				<section>We reused duplicated code and now it looks smooth and nice. Never forget about <b style="color:red">keys</b> while using `.map`.<br>Next Episode ====></section>
+				<h4>Разделяй и Властвуй ➗</h4>
+				<ul>
+					<li>
+						.map(). Again!? x3 🗺️
+					</li>
+					<li>
+						 Компоненты 📁
+					</li>
+					<li>
+						UI & UX 🆚 DX 
+					</li>
+				</ul>
 			</section>
 
-			<section>
-			<section>Components => divide and conquer</section>
-			<section>Lets break againg our code to smaller chunks. In our StarWars project there are (at least) two logically separated sections: <b style="color:rgb(76, 76, 232)">header</b> and <b style="color:rgb(76, 76, 232)">content-section</b></section>
-			<section>React allows us to break them into two separate functions. We can specify them within <b style="color:rgb(76, 76, 232)">App.js</b>, or even better, in two separate files...</section>
-			<section>First create <b style="color:rgb(76, 76, 232)">components</b> folder. Then specify two smaller folders <b style="color:rgb(76, 76, 232)">header,content</b>. Last step, create <b style="color:rgb(76, 76, 232)">index.js</b> file within folder.</section>
-			<section>In <b style="color:rgb(76, 76, 232)">index.js</b> files just cut needed parts from <b style="color:rgb(76, 76, 232)">App.js</b> and put them inside. Don't forget to create function with proper name first. Ex: <b style="color:rgb(76, 76, 232)">Header, Content</b>...</section>
-			<section data-markdown>
-				<textarea data-template>
-					 Creating Component <b style="color:rgb(76, 76, 232)">Header</b>
-					  ```js [1-4|3]
-					  export const Header = () => {
-						return (
-							/*  Your content from App.js goes here  */
-						)
-					  }
-					  ```
-					</textarea>
-			</section>
-			<section data-markdown>
-				<textarea data-template>
-					 Creating Component <b style="color:rgb(76, 76, 232)">Header</b>
-					  ```js [3-23]
-					  export const Header = () => {
-						return (
-							<header>
-								<div className="links-layout">
-								  {swLinks.map((link) => (
-									<a
-									  key={link.name}
-									  className="link"
-									  href={link.url}
-									  target="_blank"
-									  alt={link.name}
-									  rel="noreferrer"
-									>
-									  {link.component}
-									</a>
-								  ))}
-								</div>
-								<StarWarsLogoSVG />
-								<div className="search-layout">
-								  <IconSearchSVG className="search-icon" />
-								  <input placeholder="Search Star Wars" type="text" />
-								</div>
-							  </header>
-						)
-					  }
-					  ```
-					</textarea>
-			</section>
-			<section>Don't forget to move all needed imports and variables as well %) <b style="color:rgb(76, 76, 232)">VSCode linter</b> (or other IDE linters) should help you with right decisions</section>
-			<section>Recreate same steps with <b style="color:rgb(76, 76, 232)">content.</b>...<br>next Episode ====></section>
-		</section>
-
-	<section>
-		<section>Events.  <b style="color:rgb(76, 76, 232)">onClick</b> && <b style="color:red">onChange</b></section>
-		<section data-markdown>
-			<textarea data-template>
-				 onClick event
-				  ```js [1-4|3,8]
-				  export const Header = () => {
-					const handleChooseFan = () => {
-						console.log("Im your fan");
-					  };
-
-					return (
-						...
-						<button className="favorite-button" onClick={handleChooseFan}>
-						...
-					)
-				  }
-				  ```
-				</textarea>
-		</section>
-		<section data-markdown>
-			<textarea data-template>
-				 passing parameters to function
-				  ```js [1,7]
-					const handleChooseFan = (parameter) => {
-						console.log(parameter);
-					  };
-
-					return (
-						...
-						<button className="favorite-button" onClick={()=>handleChooseFan("Hello there")}>
-						...
-					)
-				  ```
-				</textarea>
-		</section>
-		<section data-markdown>
-			<textarea data-template>
-				 passing mapped character as a parameter
-				  ```js [7]
-					const handleChooseFan = (parameter) => {
-						console.log(parameter);
-					  };
-
-					return (
-						...
-						 onClick={()=>handleChooseFan(character)}>
-						...
-					)
-				  ```
-				</textarea>
-		</section>
-
-		<section data-markdown>
-			<textarea data-template>
-				 destructure name from character
-				  ```js [1]
-					const handleChooseFan = ({name}) => {
-						console.log(name);
-					  };
-				  ```
-				</textarea>
-		</section>
-
-		<section data-markdown>
-			<textarea data-template>
-				 onChange event
-				  ```js 
-				  const handleChangePath = (event) => {
-					console.log(event.target.value); // event is passing by default if you are not using forced parameter passing method
-				  };
-				  ```
-				  Next Episode ====>
-				</textarea>
-		</section>
-	</section>
-
-	<section>
-		<section> Behold! The <b style="color:rgb(76, 76, 232)">States</b>. Wee need them to control stuff</section>
-		<section>
-			<ol>
-				<li>import them from 'react'</li>
-				<li>create new variable and <b style="color:rgb(76, 76, 232)">destructure</b> stuff</li>
-				<li>set default value inside <b style="color:rgb(76, 76, 232)">useState</b> hook(function)</li>
-				<li>example: const [myNewState, useMyNewState] = useState()</li>
-			</ol>
-		</section>
-		<section data-markdown>
-				<textarea data-template>
-				 state example
-				  ```js 
-				  import React,{useState} from "react";
-				  ...
-				  const [tab,setTab] = useState("Characters")
-				  ```
-				</textarea>
-		</section>
-
-		<section data-markdown>
-			<textarea data-template>
-			 Let's use'em!
-			  ```js [4]
-			<select
-			placeholder="Choose your path"
-			className="select-item"
-			value={tab}
-			onChange={handleChangeTab}
+<section>
+<pre>
+<code>
+<div className="links-layout">
+	{swLinks.map((link) => (
+		<a
+			key={link.name}
+			className="link"
+			href={link.url}
+			target="_blank"
+			alt={link.name}
+			rel="noreferrer"
 			>
-			  ```
-			</textarea>
-		</section>
+			{link.component}
+		</a>
+	))}
+</div>
+</code>
+</pre>
+</section>
 
-		<section data-markdown>
-			<textarea data-template>
-			 Under characters create similar .map of planets
-			  ```js
-			  {swPlanets.map((planet) => (
-				<div key={planet.name} className="item-list-layout">
-				  <div>
-					<p>name: {planet.name}</p>
-					<p>rotation Period: {planet.rotation_period}</p>
-					<p>terrain: {planet.terrain}</p>
-				  </div>
-				  <div className="item-image-layout">
-					<img className="item-image" src={planet.url} alt={planet.name} />
-				  </div>
-				</div>
-			  ))}
-			  ```
-			</textarea>
-		</section>
-		<section data-markdown>
-			<textarea data-template>
-			 And show them by condition = characters, planets or starships
-			  ```js [2,7,9]
-				const handleChangeTab = (e) => {
-					setTab(e.target.value);
-				};
-				...
-				return( 
-				...
-				{tab === "Characters" && swCharacters.map((character) => (
-				...
-				{tab === "Planets" && swPlanets.map((planet) => (
-			  ```
-			</textarea>
-		</section>
-		<section>How do you do fellow studs?
-			<br/>
-		  Last Episode ====>
-		</section>
-	</section>
+<section>
+<pre>
+<code>
+{swCharacters.map((character) => (
+<div key={character.name} className="item-list-layout">
+	<div>
+		<p>name: {character.name}</p>
+		<p>gender: {character.gender}</p>
+		<p>birthday: {character.birth_year}</p>
+	</div>
+	<div className="item-image-layout">
+		<img
+		className="item-image"
+		src={character.url}
+		alt={character.name}
+		/>
+	</div>
+</div>
+))}
+</code>
+</pre>
+</section>
 
-	<section>
-
-		<section> <b style="color:red">Props.</b> Same as parameters but better(or not). </section>
-
-		<section data-markdown>
-			<textarea data-template>
-			 As an article said you can think of them as function parameters, but for components.
-			 <br/>
-			 Let's try to use "I am your fan!" button:
-			 ```js [1,4,7]
-			 const [fan, setFan] = useState("");
-
-			 const handleChooseFan = ({ name }) => {
-			   setFan(name);
-			 };
-			 ...
-			 <p style={{ color: "white" }}>I am fan of: {fan}</p>
-			 ```
-			 But, what if I want to show my favorite char in the <b style="color:red">Header</b>, under the `Search` tab?
-			</textarea>
-		</section>
-
-		<section>As you can see, now our states are encapsulated within <b style="color:red">Content</b> component, and we can not drop them to our <b style="color:red">Header</b>. Big sad %{</section>
-		<section data-markdown>
-			<textarea data-template>
-				Actually we can. We just have to cut our state and put it in the parent component => which is <b style="color:red">App.js</b><br/>
-			And then, just send this state as a props(parameter) to needed Component:
-				in App.js:
-				```js
-				import {useState} from "react";
-				...
-				const [fan, setFan] = useState("");
-
-				const handleChooseFan = ({ name }) => {
-					setFan(name);
-				  };
-				```
-			   </textarea>
-		</section>
-		<section data-markdown>
-			<textarea data-template>
-				Then pass state <b style="color:rgb(76, 76, 232)">fan</b> to our <b style="color:red">Header</b><br/>
-				and function <b style="color:rgb(76, 76, 232)">handleChooseFan</b> to our <b style="color:red">Content</b>
-				```js
-				<Header fan={fan} />
-				<hr />
-				<Content handleChooseFan={handleChooseFan} />
-				```
-				Don't forget to delete them from <b style="color:red">Content</b>!
-			   </textarea>
-		</section>
-
-		<section data-markdown>
-			<textarea data-template>
-				Last step is to "accept" them as props in <b style="color:red">Header</b> and <b style="color:red">Content</b>:
-				```js [2,5,7-9]
-				//inside Content component
-				export const Content = ({ handleChooseFan }) => {
-				
-				//inside Header component
-				export const Header = ({ fan }) => {
-				...
-				<div style={{ color: "white", paddingTop: "1rem" }}>
-					I am fan of: {fan}
-				  </div>
-				```
-			   </textarea>
-		</section>
-		<section>May the force be with you. =====> Hometask</section>
-	</section>
-
-	<section>
-		<ol>
-			<li>Pull this repo from my git: https://github.com/Fatdrfrog/star-wars-project-completed.git</li>
-			<li>COMMON = > Add "starships" as third tab.</li>
-			<li><b style="color:blue;">RARE</b> = > Implement "Delete" button functionality. It has to delete whole list.</li>
-			<li><b style="color:purple;">EPIC</b> = > Create new component "Tabs" and put our "characters, planets and !starships! there". </li>
-			<li><b style="color:gold;">LEGENDARY</b> = > Implement "search" functionaliy. By searching it has to show only searched items by name, like filter.</li>
-		</ol>
-	</section>
-
-	<section>
- 		Please post your hometasks here: https://codesandbox.io/
-	</section>
-
+			<section>
+				Компоненты разделяют нам один большой App.js на файлы.<br/>
+				Мы поделили проект на два больших файла - header и content.<br/>
 			</section>
+			
+<section>
+<pre>
+<code>
+	// Creating Component Header
+	export const Header = () => {
+	return (
+		/*  Your content from App.js goes here  */
+	)
+	}
+	```
+</code>
+</pre>
+</section>
+
+	<section>Не забудьте так же перенести все импорты и другие файлы %).<br/> 
+			Встроенный линтер Реакта должен вам в этом помочь. 
+	</section>
+
+
+<section>Events & states.🚀 <br/> 
+		Тут можете посмотреть предыдущую лекцию, мы просто повторили некоторые действия от туда.
+</section>
+
+<section>Пропсы. Те же параметры, только фэнсиер ✨.<br/> 
+</section>
+
+<section>	
+<pre>
+<code>
+// Используем кнопку "I am your fan" для этого
+	const [fan, setFan] = useState("");
+
+	const handleChooseFan = ({ name }) => {
+	setFan(name);
+	};
+	...
+	<p style={{ color: "white" }}>I am fan of: {fan}</p>
+
+</code>
+</pre>
+</section>
+<section> Но что если мне нужно увидеть проп или стейт в другом компоненте? Например в Header...💀</section>
+<section>Как вы можете заметить, сейчас наши стейты "инкапсулированы" внутри <b style="color:red">Content</b> и мы не имеем доступа к ним в  <b style="color:red">Header</b>. Big sad %{<br/>
+На самом деле мы можем. Для этого нужно вынести их в родительный(ский) компонент  <b style="color:red">App.js</b>!
+</section>
+	
+<section>
+<pre>
+<code>
+
+// в App.js:
+
+import {useState} from "react";
+...
+const [fan, setFan] = useState("");
+
+const handleChooseFan = ({ name }) => {
+	setFan(name);
+	};
+</code>
+</pre>
+</section>
+		
+<section>
+<pre>
+<code>
+	// перебрасываем стейт fan внутрь Header
+<Header fan={fan} />
+<hr />
+	// перебрасываем функцию изменения стейта внутрь Content
+<Content handleChooseFan={handleChooseFan} />  
+</code>
+</pre>
+</section>
+
+<section >
+<pre>
+<code>
+//Последним шагом нужно их принять и деструктурировать у "детей" компонентов
+// Content component
+export const Content = ({ handleChooseFan }) => {
+
+// Header component
+export const Header = ({ fan }) => {
+...
+<div style={{ color: "white", paddingTop: "1rem" }}>
+	I am fan of: {fan}
+</div>
+</code>
+</pre>
+</section>
+
+<section> React children.🧒<br/>
+	Каждый компонент в Реакт принимает так же пропс - children.
+	Можно "обернуть" наш(и) компоненты в полноценный тэг и внутрь передать любой JSX!</section>
+<section>
+<code>
+<pre>
+//  Принимаем children у обёртки CharacterLayout
+export const CharacterLayout = ({ item, children }) => {
+	const { handleChooseFan } = useContext(DefaultContext);
+	return (
+		<div key={item.name} className="item-list-layout">
+		<div>{children}</div>
+		<div className="item-image-layout">
+			<button
+			className="favorite-button"
+			onClick={() => handleChooseFan(item)}
+			>
+			I am your fan!!
+			</button>
+			<img className="item-image" src={item.url} alt={item.name} />
+			<button className="delete-button">Delete</button>
+		</div>
+		</div>
+);
+};
+</pre>
+</code>
+</section>
+
+<section>
+<code>
+<pre>
+//Передаём любой JSX. Тут спойлер.
+{tab === "Characters" &&
+swCharacters.map((character) => (
+	<CharacterLayout key={character.name} item={character}>
+	<CharacterList label="name" item={character.name} />
+	<CharacterList label="gender" item={character.gender} />
+	<CharacterList label="birth year" item={character.birth_year} />
+	</CharacterLayout>
+))}
+</pre>
+</code>
+</section>
+
+<section> Кастомные библиотеки. Material UI</section>
+<section>Как установить:
+	<ul>
+		<li>Классика материал: `npm install @mui/material @emotion/react @emotion/styled`</li>
+		<li>SVG иконки: `npm install @mui/icons-material`</li>
+	</ul>
+</section>
+
+<section>
+<code>
+<pre>
+//Перепишем обычный li на материаловский?
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItem from "@mui/material/ListItem";
+
+export const CharacterList = ({ label, item }) => {
+  return (
+    <ListItem disablePadding>
+      <ListItemButton>
+        {label} {item}
+      </ListItemButton>
+    </ListItem>
+  );
+};
+</pre>
+</code>
+</section>
+
+<section>
+<code>
+<pre>
+// внутри Content создадим JSX для перебрасывания в пропс:
+const planetRotationItem = (
+	<>
+		<PlanetSVG width={50} height={50} />
+		<p>planets</p>
+	</>
+);
+...
+<CharacterList
+label={planetRotationItem}
+item={planet.rotation_period}
+/>
+</pre>
+</code>
+</section>
+
+<section> Context, useContext.<br/>
+	Для того чтобы перебросить стейты между множеством "детей" компонентов можно использовать Context </section>
+
+<section>
+<code>
+<pre>
+//Создаём новый Context.js.
+//В нём можно создавать множество контекстов для разных целей,
+//Но мы будем пока использовать только 1:
+import React from "react";
+export const DefaultContext = React.createContext({});	
+</pre>
+</code>
+</section>
+
+<section>
+<code>
+<pre>
+// внутри App.js импортируем созданный Контекст:
+import { DefaultContext } from "./Contexts";
+...
+
+// И обернём весь контент в Провайдер. 
+// В value передадим то что нужно перебросить между "детьми"
+<DefaultContext.Provider value={{ handleChooseFan, fan }}>
+	<Header />
+	<hr />
+	<Content />
+</DefaultContext.Provider>
+</pre>
+</code>
+</section>
+
+<section>
+<code>
+<pre>
+// Внутри CharacterLayout будем использовать те айтемы что нам нужны из Контекста:
+import { DefaultContext } from "../../Contexts";
+...
+// В данном случае это функция которая менят стейт fan:
+const { handleChooseFan } = useContext(DefaultContext);
+</pre>
+</code>
+</section>
+<section>
+<code>
+<pre>
+// А также в Header используем стейт fan:
+import { DefaultContext } from "../../Contexts";
+...
+const { fan } = useContext(DefaultContext);
+</pre>
+</code>
+</section>
+
+<section>Да прибудет с Вами сила. 💡</section>
+
+<section>
+	<h4>Домашка 🏡</h4>
+	<p>Склонируйте с git: https://github.com/Fatdrfrog/star-wars-project-completed.git</p>
+	<p><b style="color:cadetblue">Common</b> () =>Добавьте "starships" в качестве 3-го таба (можно без картинок но с картинками лучше)</p>
+	<p><b style="color:blue">Epic</b> () => Создайте новый компонент Footer. Там должен быть один текст и две ссылки</p>
+	<p><b style="color:purple">Rare</b> () => Поменяйте `select` и `search` компонетны на Material UI </p>
+	<p><b style="color:goldenrod">Legendary</b> () => Используйте Context для lightTheme и darkTheme в минимум двух компонентах. (На ваше усмотрение в каких)</p>
+</section>
+
+<section data-background-image="./assets/last_slide.svg" ></section>
+
 		</div>
 	</div>
 
