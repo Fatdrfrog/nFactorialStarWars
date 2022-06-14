@@ -187,8 +187,8 @@ export const Header = ({ fan }) => {
 	Каждый компонент в Реакт принимает так же пропс - children.
 	Можно "обернуть" наш(и) компоненты в полноценный тэг и внутрь передать любой JSX!</section>
 <section>
+	<pre>
 <code>
-<pre>
 //  Принимаем children у обёртки CharacterLayout
 export const CharacterLayout = ({ item, children }) => {
 	const { handleChooseFan } = useContext(DefaultContext);
@@ -208,13 +208,13 @@ export const CharacterLayout = ({ item, children }) => {
 		</div>
 );
 };
-</pre>
 </code>
+</pre>
 </section>
 
 <section>
+	<pre>
 <code>
-<pre>
 //Передаём любой JSX. Тут спойлер.
 {tab === "Characters" &&
 swCharacters.map((character) => (
@@ -224,8 +224,8 @@ swCharacters.map((character) => (
 	<CharacterList label="birth year" item={character.birth_year} />
 	</CharacterLayout>
 ))}
-</pre>
 </code>
+</pre>
 </section>
 
 <section> Кастомные библиотеки. Material UI</section>
@@ -237,8 +237,8 @@ swCharacters.map((character) => (
 </section>
 
 <section>
+	<pre>
 <code>
-<pre>
 //Перепишем обычный li на материаловский?
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItem from "@mui/material/ListItem";
@@ -252,13 +252,13 @@ export const CharacterList = ({ label, item }) => {
     </ListItem>
   );
 };
-</pre>
 </code>
+</pre>
 </section>
 
 <section>
+	<pre>
 <code>
-<pre>
 // внутри Content создадим JSX для перебрасывания в пропс:
 const planetRotationItem = (
 	<>
@@ -271,28 +271,28 @@ const planetRotationItem = (
 label={planetRotationItem}
 item={planet.rotation_period}
 />
-</pre>
 </code>
+</pre>
 </section>
 
 <section> Context, useContext.<br/>
 	Для того чтобы перебросить стейты между множеством "детей" компонентов можно использовать Context </section>
 
 <section>
+	<pre>
 <code>
-<pre>
 //Создаём новый Context.js.
 //В нём можно создавать множество контекстов для разных целей,
 //Но мы будем пока использовать только 1:
 import React from "react";
 export const DefaultContext = React.createContext({});	
-</pre>
 </code>
+</pre>
 </section>
 
 <section>
+	<pre>
 <code>
-<pre>
 // внутри App.js импортируем созданный Контекст:
 import { DefaultContext } from "./Contexts";
 ...
@@ -304,30 +304,30 @@ import { DefaultContext } from "./Contexts";
 	<hr />
 	<Content />
 </DefaultContext.Provider>
-</pre>
 </code>
+</pre>
 </section>
 
 <section>
+	<pre>
 <code>
-<pre>
 // Внутри CharacterLayout будем использовать те айтемы что нам нужны из Контекста:
 import { DefaultContext } from "../../Contexts";
 ...
 // В данном случае это функция которая менят стейт fan:
 const { handleChooseFan } = useContext(DefaultContext);
-</pre>
 </code>
+</pre>
 </section>
 <section>
+	<pre>
 <code>
-<pre>
 // А также в Header используем стейт fan:
 import { DefaultContext } from "../../Contexts";
 ...
 const { fan } = useContext(DefaultContext);
-</pre>
 </code>
+</pre>
 </section>
 
 <section>
