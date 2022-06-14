@@ -22,7 +22,7 @@
 			<section data-background-image="./assets/first_slide.svg" ></section>
 			
 			<section>
-				<h4>Разделяй и Властвуй ➗</h4>
+				<h4>Коротко о сегодня: разделяй и властвуй ➗</h4>
 				<ul>
 					<li>
 						.map(). Again!? x3 🗺️
@@ -31,7 +31,13 @@
 						 Компоненты 📁
 					</li>
 					<li>
-						UI & UX 🆚 DX 
+						Пропсы 🚸
+					</li>
+					<li>
+						Material UI 👹
+					</li>					
+					<li>
+						Context 🌳
 					</li>
 				</ul>
 			</section>
@@ -152,8 +158,8 @@ const handleChooseFan = ({ name }) => {
 <pre>
 <code>
 	// перебрасываем стейт fan внутрь Header
-<Header fan={fan} />
-<hr />
+	<Header fan={fan} />
+	<hr />
 	// перебрасываем функцию изменения стейта внутрь Content
 <Content handleChooseFan={handleChooseFan} />  
 </code>
@@ -324,15 +330,35 @@ const { fan } = useContext(DefaultContext);
 </code>
 </section>
 
-<section>Да прибудет с Вами сила. 💡</section>
+<section>
+	<h4>Рикап</h4>
+	<ul>
+		<li>
+			.map(). Again!? x5 🗺️
+		</li>
+		<li>
+			 Компоненты 📁
+		</li>
+		<li>
+			Пропсы 🚸
+		</li>
+		<li>
+			Material UI 👹
+		</li>					
+		<li>
+			Context 🌳
+		</li>
+	</ul>
+</section>
+
 
 <section>
 	<h4>Домашка 🏡</h4>
-	<p>Склонируйте с git: https://github.com/Fatdrfrog/star-wars-project-completed.git</p>
 	<p><b style="color:cadetblue">Common</b> () =>Добавьте "starships" в качестве 3-го таба (можно без картинок но с картинками лучше)</p>
 	<p><b style="color:blue">Epic</b> () => Создайте новый компонент Footer. Там должен быть один текст и две ссылки</p>
-	<p><b style="color:purple">Rare</b> () => Поменяйте `select` и `search` компонетны на Material UI </p>
-	<p><b style="color:goldenrod">Legendary</b> () => Используйте Context для lightTheme и darkTheme в минимум двух компонентах. (На ваше усмотрение в каких)</p>
+	<p><b style="color:purple">Rare</b> () => Поменяйте `search` компонент на Material UI </p>
+	<p><b style="color:goldenrod">Legendary</b> () => Используйте Context для lightTheme и darkTheme в минимум двух компонентах(например чтобы фон перерисовывал).</p>
+	<p>Да прибудет с Вами сила. 💡 </p>
 </section>
 
 <section data-background-image="./assets/last_slide.svg" ></section>
